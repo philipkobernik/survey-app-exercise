@@ -51,3 +51,18 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model SurveyResponse {
+  id String @id @default(cuid())
+  surveyId Int
+  questions ResponseQuestion[]
+}
+
+model ResponseQuestion {
+  id String @id @default(cuid())
+  surveyResponseId String
+  questionId Int
+  option String
+  otherInput String?
+  surveyResponse SurveyResponse @relation(fields: [surveyResponseId], references: [id], onDelete: Cascade)
+}

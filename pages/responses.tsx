@@ -1,15 +1,17 @@
+
 import Layout from "@/components/layout";
 import Balancer from "react-wrap-balancer";
 import { motion } from "framer-motion";
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import getSurveyConfig from "@/lib/get-survey-config";
 import SurveyForm from "@/components/shared/survey-form";
-import { SurveyConfigType } from "types";
+import getSurveysReport from "@/lib/get-surveys-report";
+import SurveysReport from "@/components/shared/surveys-report";
 
-export function getServerSideProps() {
+export async function getServerSideProps() {
   return {
     props: {
-      surveyConfig: getSurveyConfig(),
+      surveysReport: await getSurveysReport(),
     },
   };
 }
@@ -18,7 +20,7 @@ interface Props {
   surveyConfig: SurveyConfigType;
 }
 
-export default function Home({ surveyConfig }: Props) {
+export default function Home({ surveysReport }: Props) {
   return (
     <Layout>
       <motion.div
@@ -40,7 +42,7 @@ export default function Home({ surveyConfig }: Props) {
           className="bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
-          <Balancer>Tell us what you like!</Balancer>
+          <Balancer>Here's what people liked...</Balancer>
         </motion.h1>
         <motion.p
           className="mt-6 text-center text-gray-500 md:text-xl"
@@ -54,7 +56,7 @@ export default function Home({ surveyConfig }: Props) {
           className="mx-auto mt-6 flex items-center justify-center space-x-5"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
-          <SurveyForm surveyConfig={surveyConfig} />
+          <SurveysReport report={surveysReport} />
         </motion.div>
       </motion.div>
       <motion.div>
