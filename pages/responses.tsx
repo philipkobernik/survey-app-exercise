@@ -7,6 +7,7 @@ import getSurveyConfig from "@/lib/get-survey-config";
 import SurveyForm from "@/components/shared/survey-form";
 import getSurveysReport from "@/lib/get-surveys-report";
 import SurveysReport from "@/components/shared/surveys-report";
+import { SurveyConfigType } from "types";
 
 export async function getServerSideProps() {
   return {
@@ -17,7 +18,7 @@ export async function getServerSideProps() {
 }
 
 interface Props {
-  surveyConfig: SurveyConfigType;
+  // surveysReport: SurveysReportType;
 }
 
 export default function Home({ surveysReport }: Props) {

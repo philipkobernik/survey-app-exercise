@@ -7,9 +7,11 @@ export default async function getSurveyConfig() {
 
   let report = {
     1: {
+      prompt: "What is your favorite food?",
       otherInput: []
     },
     2: {
+      prompt: "What is your favorite color?",
       otherInput: []
     }
   };
